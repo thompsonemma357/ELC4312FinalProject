@@ -1,7 +1,7 @@
 
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Simple MMIO core for mic gate (slot-4 style, similar to led_blinker_mmio)
+// Simple MMIO core for mic gate 
 // Address map (16-bit words):
 //   0: STATUS (RO)  [bit0 = above_thresh, bit1 = new_lvl_flag]
 //   1: LEVEL  (RO)  [16-bit peak level from detector]
@@ -13,7 +13,7 @@ module mic_gate_mmio (
     input  logic        clk,
     input  logic        rst,
 
-    // simple MMIO interface (like led_blinker_mmio)
+    // simple MMIO interface 
     input  logic        cs,         // chip select
     input  logic        wr_en,      // write strobe (1-cycle)
     input  logic        rd_en,      // read strobe  (1-cycle)
@@ -47,7 +47,7 @@ module mic_gate_mmio (
                 unique case (address)
                     2'd2: threshold_reg <= wr_data;                // THRESH
                     2'd3: if (wr_data[0]) new_lvl_flag <= 1'b0;    // CTRL: bit0=clear flag
-                    default: /* no-op */;
+                    default:;
                 endcase
             end
         end
